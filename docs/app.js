@@ -8,7 +8,7 @@
 // ELEMENT REFERENCES
 // These IDs match the current index.html exactly.
 // ============================================================
-const API_URL = "http://127.0.0.1:5000";
+const API_URL = "https://earthscope-ai.onrender.com";
 const uploadView = document.getElementById("uploadView");
 
 const dropZone = document.getElementById("dropZone");
