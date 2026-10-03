@@ -1,0 +1,66 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Environment variables
+.env
+.env.*
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python cache
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Build files
+build/
+dist/
+*.egg-info/
+
+# Logs
+*.log
+logs/
+
+# Hugging Face / ML cache
+.cache/
+huggingface/
+.huggingface/
+**/.cache/
+**/huggingface/
+
+# Model files
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+
+# Temporary files
+*.tmp
+*.temp
+
+# Uploaded images
+uploads/
+outputs/
+generated/
+
+# Local Flask files
+instance/

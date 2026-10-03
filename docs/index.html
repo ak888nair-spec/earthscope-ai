@@ -1,0 +1,207 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>EARTHSCOPE // AI OBSERVATION SYSTEM</title> 
+    <link rel="stylesheet" href="style.css"> 
+</head> 
+<body> 
+    <div class="scanlines"></div> 
+    <div class="grid-bg"></div> 
+ 
+    <header class="topbar"> 
+        <div class="brand"> 
+            <div class="brand-mark"> 
+                <span></span><span></span><span></span> 
+            </div> 
+            <div> 
+                <div class="brand-name">EARTHSCOPE</div> 
+                <div class="brand-sub">AI // PLANETARY OBSERVATION SYSTEM</div> 
+            </div> 
+        </div> 
+        <div class="system-status"> 
+            <span class="status-dot"></span> 
+            <span>SYSTEM ONLINE</span> 
+        </div> 
+    </header> 
+ 
+    <main class="shell"> 
+        <section class="hero"> 
+            <div class="eyebrow">EARTH INTELLIGENCE / 01</div> 
+            <h1>See the planet<br><span>through machine vision.</span></h1> 
+            <p class="hero-copy"> 
+                Upload an Earth or space observation image. EarthScope identifies 
+                visible features, highlights their locations, and translates the 
+                observation into simple language. 
+            </p> 
+        </section> 
+ 
+        <section id="uploadView" class="workspace"> 
+            <div class="workspace-header"> 
+                <div> 
+                    <span class="panel-code">INPUT MODULE</span> 
+                    <h2>Observation uplink</h2> 
+                </div> 
+                <div class="telemetry"> 
+                    <span>LOCAL</span> 
+                    <span>VISUAL AI</span> 
+                    <span>READY</span> 
+                </div> 
+            </div> 
+ 
+            <label id="dropZone" class="drop-zone"> 
+                <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp,image/jpg"> 
+                <div class="reticle reticle-a"></div> 
+                <div class="reticle reticle-b"></div> 
+                <div class="upload-core"> 
+                    <div class="orb"> 
+                        <div class="orb-ring ring-one"></div> 
+                        <div class="orb-ring ring-two"></div> 
+                        <div class="orb-core"></div> 
+                    </div> 
+                    <div class="upload-title">UPLOAD OBSERVATION</div> 
+                    <div class="upload-sub">Drag an image here or select a file</div> 
+                    <button type="button" id="chooseBtn" class="primary-btn">SELECT IMAGE <span>↗</span></button> 
+                    <div class="format-line">JPG / PNG / WEBP &nbsp;•&nbsp; MAX 15 MB</div> 
+                </div> 
+            </label> 
+ 
+            <div id="previewCard" class="preview-card hidden"> 
+                <div class="preview-image-wrap"> 
+                    <img id="previewImage" alt="Selected image preview"> 
+                    <div class="image-corner tl"></div> 
+                    <div class="image-corner tr"></div> 
+                    <div class="image-corner bl"></div> 
+                    <div class="image-corner br"></div> 
+                </div> 
+                <div class="preview-meta"> 
+                    <div> 
+                        <span class="panel-code">SELECTED PAYLOAD</span> 
+                        <div id="fileName" class="file-name"></div> 
+                    </div> 
+                    <div id="fileMeta" class="file-meta"></div> 
+                    <div class="preview-actions"> 
+                        <button id="replaceBtn" class="ghost-btn">REPLACE</button> 
+                        <button id="analyzeBtn" class="primary-btn">INITIATE ANALYSIS <span>→</span></button> 
+                    </div> 
+                </div> 
+            </div> 
+        </section> 
+ 
+        <section id="loadingView" class="loading-view hidden"> 
+            <div class="loader-orbit"> 
+                <div class="orbit o1"></div> 
+                <div class="orbit o2"></div> 
+                <div class="orbit o3"></div> 
+                <div class="loader-core">AI</div> 
+            </div> 
+            <div class="eyebrow">PROCESSING PAYLOAD</div> 
+            <h2 id="loadingTitle">Initializing visual analysis</h2> 
+            <p id="loadingText">Preparing image for the observation engine.</p> 
+ 
+            <div class="progress-track"> 
+                <div id="progressBar"></div> 
+            </div> 
+ 
+            <div class="pipeline"> 
+                <div class="pipe active" id="pipe1"><span>01</span> INPUT</div> 
+                <div class="pipe" id="pipe2"><span>02</span> QUALITY</div> 
+                <div class="pipe" id="pipe3"><span>03</span> VISION</div> 
+                <div class="pipe" id="pipe4"><span>04</span> FEATURES</div> 
+                <div class="pipe" id="pipe5"><span>05</span> EXPLANATION</div> 
+            </div> 
+        </section> 
+ 
+        <section id="resultView" class="result-view hidden"> 
+            <div class="result-top"> 
+                <div> 
+                    <div class="eyebrow">ANALYSIS COMPLETE / 02</div> 
+                    <h2>Observation decoded.</h2> 
+                </div> 
+                <div class="result-actions"> 
+                    <button id="toggleImageBtn" class="ghost-btn">SHOW ORIGINAL</button> 
+                    <button id="newAnalysisBtn" class="primary-btn">NEW ANALYSIS <span>↗</span></button> 
+                </div> 
+            </div> 
+ 
+            <div class="result-grid"> 
+                <div class="image-panel panel"> 
+                    <div class="panel-top"> 
+                        <span class="panel-code">VISUAL OUTPUT</span> 
+                        <span id="relevanceScore">RELEVANCE — --</span> 
+                    </div> 
+                    <div class="result-image-wrap"> 
+                        <img id="resultImage" alt="Analyzed observation"> 
+                        <div class="image-overlay-label">AI / DETECTION LAYER</div> 
+                    </div> 
+                    <div class="legend" id="legend"></div> 
+                </div> 
+ 
+                <aside class="analysis-panel"> 
+                    <div class="panel"> 
+                        <div class="panel-top"> 
+                            <span class="panel-code">DETECTED FEATURES</span> 
+                            <span id="featureCount">00</span> 
+                        </div> 
+                        <div id="featureList" class="feature-list"></div> 
+                    </div> 
+ 
+                    <div class="panel explanation-panel"> 
+                        <div class="panel-code">MACHINE-GENERATED OBSERVATION</div> 
+                        <h3>What is happening?</h3> 
+                        <p id="explanation"></p> 
+                        <div class="evidence-line"> 
+                            <span class="evidence-dot"></span> 
+                            <span>Visual evidence separated from interpretation.</span> 
+                        </div> 
+                    </div> 
+ 
+                    <div class="panel note-panel"> 
+                        <div class="panel-code">SYSTEM NOTE</div> 
+                        <p id="modelNote"></p> 
+                    </div> 
+                </aside> 
+            </div> 
+        </section> 
+ 
+        <section id="unsuitableView" class="state-view hidden"> 
+            <div class="state-symbol warning-symbol">!</div> 
+            <div class="eyebrow">INPUT REJECTED / QUALITY GATE</div> 
+            <h2 id="unsuitableTitle">Observation unsuitable.</h2> 
+            <p id="unsuitableMessage"></p> 
+ 
+            <div class="state-reasons"> 
+                <div>01 / CHECK IMAGE SHARPNESS</div> 
+                <div>02 / USE EARTH OR SPACE OBSERVATION IMAGERY</div> 
+                <div>03 / PROVIDE ENOUGH VISUAL INFORMATION</div> 
+            </div> 
+ 
+            <button id="retryUnsuitable" class="primary-btn">UPLOAD ANOTHER IMAGE <span>↗</span></button> 
+        </section> 
+ 
+        <section id="errorView" class="state-view hidden"> 
+            <div class="state-symbol error-symbol">×</div> 
+            <div class="eyebrow">SYSTEM FAULT / 500</div> 
+            <h2>Analysis interrupted.</h2> 
+            <p id="errorMessage"> 
+                The image could not be analyzed because the observation engine encountered 
+                a server-side error. 
+            </p> 
+            <div class="error-code">RECOVERY PATH // RETRY CURRENT PAYLOAD</div> 
+            <div class="state-actions"> 
+                <button id="retryError" class="primary-btn">RETRY ANALYSIS <span>↻</span></button> 
+                <button id="newFromError" class="ghost-btn">NEW IMAGE</button> 
+            </div> 
+        </section> 
+    </main> 
+ 
+    <footer> 
+        <span>EARTHSCOPE AI</span> 
+        <span>GENERAL VISION MODEL / PROTOTYPE</span> 
+        <span>NOT A SCIENTIFIC MEASUREMENT SYSTEM</span> 
+    </footer> 
+ 
+    <script src="app.js"></script> 
+</body> 
+</html>

@@ -1,0 +1,9 @@
+Flask==3.1.2
+flask-cors
+gunicorn
+torch
+torchvision
+transformers
+Pillow
+opencv-python-headless
+numpy
