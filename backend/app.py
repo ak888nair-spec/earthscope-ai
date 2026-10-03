@@ -54,7 +54,9 @@ clip_processor = CLIPProcessor.from_pretrained(
 )
 
 clip_model = CLIPModel.from_pretrained(
-    CLIP_MODEL_NAME
+    CLIP_MODEL_NAME,
+    torch_dtype=torch.float16,
+    low_cpu_mem_usage=True
 )
 
 clip_model.to(device)
@@ -70,7 +72,9 @@ clipseg_processor = CLIPSegProcessor.from_pretrained(
 )
 
 clipseg_model = CLIPSegForImageSegmentation.from_pretrained(
-    CLIPSEG_MODEL_NAME
+    CLIPSEG_MODEL_NAME,
+    torch_dtype=torch.float16,
+    low_cpu_mem_usage=True
 )
 
 clipseg_model.to(device)
